@@ -1,21 +1,11 @@
-// Importações necessárias do React, React Native e Context API
 import React, { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import CartoesEstudoContext from '../contexts/CartoesEstudoContext'; // Contexto dos cartões
-import { MaterialIcons } from 'react-native-vector-icons'; // Biblioteca de ícones
+import CartoesEstudoContext from '../contexts/CartoesEstudoContext';
+import { MaterialIcons } from 'react-native-vector-icons';
 
-/**
- * Tela principal para exibição dos cartões de estudo.
- * - Lista cartões organizados por status: backlog, em progresso, concluídos.
- * - Permite adicionar, editar e excluir cartões.
- */
 const ListaCartaoScreen = ({ navigation }) => {
-    // Obtém os dados e métodos do contexto de cartões
     const { cartoes, excluirCartao } = useContext(CartoesEstudoContext);
 
-    /**
-     * Confirmação antes de excluir um cartão.
-     */
     const confirmarExclusao = (id) => {
         Alert.alert("Excluir Cartão", "Tem certeza que deseja excluir este cartão?", [
             { text: "Cancelar", style: "cancel" },
@@ -23,12 +13,7 @@ const ListaCartaoScreen = ({ navigation }) => {
         ]);
     };
 
-    /**
-     * Renderiza um cartão individual.
-     * - Aplica cores diferentes com base no status do cartão.
-     */
     const renderizarCartao = ({ item }) => {
-        // Define estilos baseados no status do cartão
         let cardStyle = styles.card;
         if (item.status === 'backlog') {
             cardStyle = { ...styles.card, ...styles.cardBacklog };
@@ -44,11 +29,9 @@ const ListaCartaoScreen = ({ navigation }) => {
                 <Text style={styles.cardText}>Status: {item.status}</Text>
                 <Text style={styles.cardText}>Data: {new Date(item.dataTermino).toLocaleDateString()}</Text>
                 <View style={styles.cardButtons}>
-                    {/* Botão para editar o cartão */}
                     <TouchableOpacity onPress={() => navigation.navigate('EdicaoCartao', { id: item.id })} style={styles.iconButton}>
                         <MaterialIcons name="edit" size={18} color="#007bff" />
                     </TouchableOpacity>
-                    {/* Botão para excluir o cartão */}
                     <TouchableOpacity onPress={() => confirmarExclusao(item.id)} style={styles.iconButton}>
                         <MaterialIcons name="delete" size={18} color="#ff6347" />
                     </TouchableOpacity>
@@ -57,14 +40,8 @@ const ListaCartaoScreen = ({ navigation }) => {
         );
     };
 
-    /**
-     * Filtra os cartões de estudo por status.
-     */
     const cartoesAgrupadosPorStatus = (status) => cartoes.filter(cartao => cartao.status === status);
 
-    /**
-     * Filtra cartões que estão próximos ao vencimento (dentro de 15 dias).
-     */
     const cartoesVencimentoProximo = cartoes.filter(cartao => {
         const dataTermino = new Date(cartao.dataTermino);
         const diferencaDias = (dataTermino - new Date()) / (1000 * 60 * 60 * 24);
@@ -73,12 +50,10 @@ const ListaCartaoScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* Botão para acessar tarefas a vencer */}
             <TouchableOpacity style={styles.dueSoonButton} onPress={() => navigation.navigate('TarefasVencimentoProximo')}>
                 <Text style={styles.dueSoonButtonText}>Tarefas a Vencer: {cartoesVencimentoProximo.length}</Text>
             </TouchableOpacity>
 
-            {/* Lista de cartões em progresso */}
             <Text style={styles.sectionTitle}>Em Progresso</Text>
             <FlatList
                 data={cartoesAgrupadosPorStatus('in_progress')}
@@ -90,7 +65,6 @@ const ListaCartaoScreen = ({ navigation }) => {
 
             <View style={styles.divider} />
 
-            {/* Lista de cartões concluídos */}
             <Text style={styles.sectionTitle}>Concluído</Text>
             <FlatList
                 data={cartoesAgrupadosPorStatus('done')}
@@ -102,7 +76,6 @@ const ListaCartaoScreen = ({ navigation }) => {
 
             <View style={styles.divider} />
 
-            {/* Lista de cartões em backlog */}
             <Text style={styles.sectionTitle}>Backlog</Text>
             <FlatList
                 data={cartoesAgrupadosPorStatus('backlog')}
@@ -112,7 +85,6 @@ const ListaCartaoScreen = ({ navigation }) => {
                 showsHorizontalScrollIndicator={false}
             />
 
-            {/* Botão para adicionar um novo cartão */}
             <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('EdicaoCartao')}>
                 <MaterialIcons name="add" size={24} color="#ffffff" />
                 <Text style={styles.addButtonText}>Adicionar Novo Cartão</Text>

@@ -1,39 +1,26 @@
-// Importações necessárias do React, React Native e Firebase
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth'; // Firebase para criar contas de usuário
-import { auth } from '../config/firebaseConfig'; // Configuração do Firebase
+import { createUserWithEmailAndPassword } from 'firebase/auth'; 
+import { auth } from '../config/firebaseConfig'; 
 
-/**
- * Tela de Registro
- * - Permite que novos usuários criem uma conta com email e senha.
- * - Redireciona para a tela de login após o registro bem-sucedido.
- */
 const RegistroScreen = ({ navigation }) => {
-    // Estados para capturar email e senha
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    /**
-     * Função para registrar um novo usuário.
-     * - Usa o método `createUserWithEmailAndPassword` do Firebase Authentication.
-     */
     const handleRegister = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password); // Cria o usuário no Firebase
+            await createUserWithEmailAndPassword(auth, email, password);
             Alert.alert('Sucesso', 'Conta criada com sucesso!');
-            navigation.goBack(); // Retorna para a tela de login após o registro
+            navigation.goBack(); 
         } catch (error) {
-            Alert.alert('Erro', error.message); // Exibe mensagens de erro
+            Alert.alert('Erro', error.message);
         }
     };
 
     return (
         <View style={styles.container}>
-            {/* Título da tela */}
             <Text style={styles.title}>Criar Conta</Text>
 
-            {/* Campo de email */}
             <TextInput
                 placeholder="Email"
                 value={email}
@@ -42,7 +29,6 @@ const RegistroScreen = ({ navigation }) => {
                 keyboardType="email-address"
                 autoCapitalize="none"
             />
-            {/* Campo de senha */}
             <TextInput
                 placeholder="Senha"
                 value={password}
@@ -52,7 +38,6 @@ const RegistroScreen = ({ navigation }) => {
                 autoCapitalize="none"
             />
 
-            {/* Botão de registro */}
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
                 <Text style={styles.buttonText}>Registrar</Text>
             </TouchableOpacity>
@@ -60,7 +45,6 @@ const RegistroScreen = ({ navigation }) => {
     );
 };
 
-// Estilização da tela
 const styles = StyleSheet.create({
     container: {
         flex: 1,

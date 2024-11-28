@@ -25,22 +25,22 @@
 |- package.json
 ```
 
-- Pasta assets: Contém imagens, fontes, ícones ou outros recursos usados pela aplicação.
-- Pasta src: Contém todo o código-fonte principal da aplicação.
-- Pasta config: Contém as configurações e integrações externas da aplicação.
-- Pasta contexts: Contém os métodos que fazem a organização e os contextos para gerenciamento de estado global. Operações com os dados do BD.
-- Pasta screens: Contém as views/telas da aplicação que o usuário vai ver.
+- **Pasta assets:** Contém imagens, fontes, ícones ou outros recursos usados pela aplicação.
+- **Pasta src:** Contém todo o código-fonte principal da aplicação.
+- **Pasta config:** Contém as configurações e integrações externas da aplicação.
+- **Pasta contexts:** Contém os métodos que fazem a organização e os contextos para gerenciamento de estado global. Operações com os dados do BD.
+- **Pasta screens:** Contém as views/telas da aplicação que o usuário vai ver.
 
 
 
 ## Arquivos
-- .env: Armazena variáveis de ambiente, como chaves de API ou URLs.
-- .gitignore: Define arquivos e pastas que o Git deve ignorar.
-- App.js: Arquivo principal que inicializa a aplicação. Serve como ponto de entrada para a estrutura do aplicativo.
-- app.json: Arquivo de configuração que define informações da aplicação.
-- babel.config.json: Configurações do Babel.
-- index.js: Ponto de entrada inicial da aplicação, onde o React Native começa a executar o código.
-- package.json e package-lock.json: Arquivos que contêm informações sobre dependências do projeto e versões exatas.
+- **.env:** Armazena variáveis de ambiente, como chaves de API ou URLs.
+- **.gitignore:** Define arquivos e pastas que o Git deve ignorar.
+- **App.js:** Arquivo principal que inicializa a aplicação. Serve como ponto de entrada para a estrutura do aplicativo.
+- **app.json:** Arquivo de configuração que define informações da aplicação.
+- **babel.config.json:** Configurações do Babel.
+- **index.js:** Ponto de entrada inicial da aplicação, onde o React Native começa a executar o código.
+- **package.json e package-lock.json:** Arquivos que contêm informações sobre dependências do projeto e versões exatas.
 
 
 

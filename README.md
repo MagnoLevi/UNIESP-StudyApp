@@ -49,7 +49,7 @@
   - Aqui estão importados as variáveis do .env, em seguida estão sendo armazenadas na variável "firebaseConfig" para serem usadas na conexão entre o app e o BD Firebase. A função `getApps()` retorna uma lista de todas as instâncias de aplicativos Firebase já inicializadas. 
   - Caso não exista nenhuma instância, a função `initializeApp()` será chamada, ela é usada para inicializar o Firebase em um aplicativo com as configurações fornecidas.
   
-  ![image](https://github.com/user-attachments/assets/f9ff609a-2039-459f-b307-9e182b2e78db)
+  ![image](https://github.com/user-attachments/assets/df5041f5-92c8-4295-8167-c223b54f41c2)
 
 
 - ### AuthContext.js
